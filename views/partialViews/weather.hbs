@@ -1,0 +1,98 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+</head>
+   <body>         
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+              
+        <header class="container">
+           <h1 class="headline">Weather Forecast</h1>
+           <div class="search-weather">
+               <h4>Find a forecast</h4>            
+               <form id="my-form" action="/" method="POST">               
+               <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="address" placeholder="Search For Location" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-secondary" type="submit">Search</button>
+                    </div>
+                  </div>                            
+               </form>
+           </div> 
+
+           <div class="weather-info">
+              <table align="center" style="color:white">
+                  <tr style="font-size:30px"> 
+                      <td colspan="2">{{dateTime}}</td>
+                  </tr>                  
+                  <tr>
+                      <td style="font-size:15px; color:gainsboro">High {{tempHigh}}&deg; &uarr;, Low {{tempLow}}&deg; &darr;</td>
+                      <td rowspan="2"><img class="icon" src="{{imgURL}}" alt="{{atom}}" height="128" width="128"></td>
+                 </tr>
+                  <tr>
+                      <td style="font-size:35px">{{temp}} &#8457;</td>
+                  </tr>
+                  <tr>
+                       <td style="font-size:15px; color:gainsboro">Feels like: {{feelsLike}} &#8457;</td>
+                      <td style="font-size:15px; color:gainsboro">{{atom}}</td>
+                  </tr>
+              </table> 
+              </div> 
+            
+            <div>               
+                <p>Current Details</p>
+                <table style="color:gainsboro">                    
+                    <tr>
+                        <td>Humidity:   </td>
+                        <td>{{humidity}}%</td>
+                    </tr>
+                    <tr>
+                        <td>Wind:   </td>
+                        <td>{{windSpeed}} mph</td>
+                    </tr>
+                    <tr>
+                        <td>Visibility: </td>
+                        <td>{{visibility}} mi</td>
+                    </tr>
+                    <tr>
+                        <td>Summary:    </td>
+                        <td>{{summary}}</td>
+                    </tr>
+                </table>                
+            </div> 
+            <hr>
+            <div>
+                <p>Hourly Details</p>  
+                <table style="color:gainsboro">
+                <tr>                    
+                    {{#each dataHourly}}
+                    <td>{{hours}}</td>
+                    {{/each}}
+                </tr>         
+              <tr>
+                    {{#each dataHourly}}
+                    <td><img class="icon" src="{{imgURLhourly}}" alt="{{hours_atom}}" height="64" width="64"></td>
+                    {{/each}}
+                </tr>      
+                <tr>
+                    {{#each dataHourly}}
+                    <td>{{htemp}}&deg;</td>
+                    {{/each}}
+                </tr>         
+            </table> 
+            </div>       
+                 
+           <div class="footer" >  
+            <span><a href="/">Home-Weather</a></span><span> / </span>
+            <span><a href="/weekly">Weekly</a></span><span> / </span>            
+            <span><a href="/location">Location</a></span> 
+                   <p>weather@2018</p>              
+           </div> 
+           
+  
+   </header>  
+   
+   </body>
+   

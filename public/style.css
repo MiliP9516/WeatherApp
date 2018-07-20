@@ -1,0 +1,64 @@
+body {
+  margin: 0 auto;
+  font-family: 'Open Sans', sans-serif;
+}
+h3 {
+  text-align: center;
+  color:white;
+}
+.container {
+  width: 800px;
+  margin: 0 auto;
+  background-color: #35586C	;
+}
+.headline {
+  text-align: center;
+  margin-top: 0.5em;
+  padding: 0px 30px;
+  color: white;
+  font-weight: 700;
+  font-family: 'Lato', sans-serif; }
+  .search-weather {
+      background-color: lightblue;
+      color: white;
+      text-align: left;
+      margin: 15px auto 0;
+      padding: 5px 15px;
+      bottom: 0; }
+      .search-weather h4 {
+          color: #003B2B;
+          font-weight: 700; }
+          form {
+              margin-bottom: 0; }
+            
+            input[type="search"] {
+              width: 80%; }
+.weather-info {
+  text-align: center; }
+ p {
+   color:white;
+   font-weight: bold;
+ } 
+table{
+  color: white;
+  align-content: center;
+}
+  
+.footer {
+  padding-top: 40px;
+  text-align: center; 
+  color: gainsboro;
+}
+
+.footer p {
+  margin-bottom: 0.5em;
+  font-size: 2 px;
+  color:white; }
+
+  .footer a {
+    color: gainsboro;
+  }
+  .footer a:active {
+    text-decoration: underline;
+}
+        
