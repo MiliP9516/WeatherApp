@@ -14,19 +14,13 @@ var day_atom = [], hours_atom = [];
 var date, hoursData=[], dataHourly = [], dataWeekly = [], daysData=[], imgURLweekly = [], imgURLhourly = [];
 
 
-const api_key = 'Use your google api key';
+const api_key =  'Use your google api key';
 const darksky_key = 'Use your darksky api key';
 
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
 app.use(express.static(__dirname + 'public/images'));
 app.use(bodyParser.urlencoded({ extended: true }));
-/* 
-hbs.registerHelper('getWeatherIcon', function(text){
-  return text.toUpperCase();
-});
- */
-
 
 hbs.registerPartials(__dirname + '/views/partialViews');
 
@@ -155,6 +149,8 @@ else { imgURLweekly.push('');}
   app.get('/', (req, res)=>{
   res.render('home.hbs',{
     pageTitle:'Weather Test App',
+    latitude: latitude,
+    longitude: longitude,  
     summary: summary,
     temp: temp,
     atom: atom,
@@ -179,13 +175,7 @@ app.get('/weekly',(req,res) => {
   });
 });
 
-app.get('/location',(req, res) => {
-  res.render('location.hbs',{
-    pageTitle: 'Location',
-    latitude: latitude,
-    longitude: longitude  
-  });
-});
+
 
 app.listen(3000, ()=>{
   console.log('Server is up on port 3000');

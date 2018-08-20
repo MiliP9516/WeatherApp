@@ -16,7 +16,7 @@
                <div class="input-group mb-3">
                     <input type="text" class="form-control" name="address" placeholder="Search For Location" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-secondary" type="submit">Search</button>
+                      <button class="btn btn-secondary" type="submit">Search</button>                      
                     </div>
                   </div>                            
                </form>
@@ -40,7 +40,21 @@
                   </tr>
               </table> 
               </div> 
-            
+              <div>
+                  <p>Location Details</p>
+                  <table style="color: gainsboro">
+                      <tr>
+                          <td>Latitude: </td>
+                          <td>{{latitude}}</td>
+                      </tr>
+                      <tr>
+                          <td>Longitude:    </td>
+                          <td>{{longitude}}</td>
+                      </tr>
+                  </table>
+                    
+              </div>
+            <hr>
             <div>               
                 <p>Current Details</p>
                 <table style="color:gainsboro">                    
@@ -86,12 +100,11 @@
                  
            <div class="footer" >  
             <span><a href="/">Home-Weather</a></span><span> / </span>
-            <span><a href="/weekly">Weekly</a></span><span> / </span>            
-            <span><a href="/location">Location</a></span> 
-                   <p>weather@2018</p>              
+            <span><a href="/weekly">Weekly</a></span>           
+            <p>weather@2018</p>              
            </div> 
            
-  
+
    </header>  
    
    </body>
