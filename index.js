@@ -14,8 +14,8 @@ var day_atom = [], hours_atom = [];
 var date, hoursData=[], dataHourly = [], dataWeekly = [], daysData=[], imgURLweekly = [], imgURLhourly = [];
 
 
-const api_key =  'Use your google api key';
-const darksky_key = 'Use your darksky api key';
+const api_key =  'Use your Google API key';
+const darksky_key = 'Use your DarkSky API key';
 
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
@@ -32,9 +32,7 @@ app.post('/', (req,res) => {
   .then(function (response) {
      latitude = response.data.results[0].geometry.location.lat;
      longitude = response.data.results[0].geometry.location.lng;
-    
-    weatherResult(latitude, longitude);
-
+     getWeather(latitude, longitude);
     })
     .catch(function (error) {
       console.log(error);
@@ -42,7 +40,7 @@ app.post('/', (req,res) => {
 
 });
 
-var weatherResult = function getWeather(latitude, longitude){
+function getWeather(latitude, longitude){
   axios.get('https://api.darksky.net/forecast/'+ darksky_key +'/'+latitude+ ','+ longitude)
  .then(function (response) {
    
@@ -57,15 +55,14 @@ var weatherResult = function getWeather(latitude, longitude){
   tempHigh = response.data.daily.data[0].temperatureHigh;
   tempLow = response.data.daily.data[0].temperatureLow;
 
-currentTime = new Date();
-dateTime = currentTime.toLocaleString('en-US', {timeZone: timeZone}); 
+  currentTime = new Date();
+  dateTime = currentTime.toLocaleString('en-US', {timeZone: timeZone}); 
 
   for(hours = 0; hours < 12; hours++ ){
     hours_temp.push(response.data.hourly.data[hours].temperature);
     hours_atom.push(response.data.hourly.data[hours].icon);
   }
    Date.prototype.addHours = function(hours){
-    // dateHours = new Date();
     dateHours.setHours(dateHours.getHours() + hours);
     dtzHours = dateHours.toLocaleTimeString('en-US', {timeZone: timeZone,   hour: 'numeric', hour12: true });
     return dtzHours;
@@ -87,6 +84,7 @@ dateTime = currentTime.toLocaleString('en-US', {timeZone: timeZone});
       else { imgURLhourly.push('');}
       dataHourly.push({
         hours: hoursData[i],
+        hours_atom: hours_atom[i],
         imgURLhourly: imgURLhourly[i],
         htemp: hours_temp[i]
     });
@@ -97,38 +95,36 @@ dateTime = currentTime.toLocaleString('en-US', {timeZone: timeZone});
     day_low.push(response.data.daily.data[day].temperatureLow);
   }
   Date.prototype.addDays = function(days){
-  // date = new Date();
   date.setDate(date.getDate() + days);
   dtzDays = date.toLocaleDateString('en-US', {timeZone: timeZone});
   return dtzDays;
-}
-for(var i=1; i<=7; i++){
-  date = new Date();
-  daysData.push(date.addDays(i));    
-}
-dataWeekly = [];
-for(var i = 0; i < daysData.length; i++){
+  }
+  for(var i=1; i<=7; i++){
+    date = new Date();
+    daysData.push(date.addDays(i));    
+  }
+  dataWeekly = [];
+
+  for(var i = 0; i < daysData.length; i++){
   if( day_atom[i] === "clear-day") { imgURLweekly.push('/imgaes/sunny.png'); }
-else if(day_atom[i] === "partly-cloudy-day"){ imgURLweekly.push('/imgaes/partly_cloudy.png'); } 
-else if(day_atom[i] === "partly-cloudy-night"){ imgURLweekly.push('/imgaes/partly_cloudy_night.png'); } 
-else if( day_atom[i] === "cloudy") { imgURLweekly.push('/imgaes/cloud.png'); }
-else if( day_atom[i] === "rain") { imgURLweekly.push('/imgaes/rain.png'); }
-else if( day_atom[i] === "snow") { imgURLweekly.push('/imgaes/snowflake.png'); }
-else if( day_atom[i] === "clear-night") { imgURLweekly.push('/imgaes/moon.png'); }
-else if( day_atom[i] === "wind") { imgURLweekly.push('/imgaes/wind.png'); }
-else { imgURLweekly.push('');}
+  else if(day_atom[i] === "partly-cloudy-day"){ imgURLweekly.push('/imgaes/partly_cloudy.png'); } 
+  else if(day_atom[i] === "partly-cloudy-night"){ imgURLweekly.push('/imgaes/partly_cloudy_night.png'); } 
+  else if( day_atom[i] === "cloudy") { imgURLweekly.push('/imgaes/cloud.png'); }
+  else if( day_atom[i] === "rain") { imgURLweekly.push('/imgaes/rain.png'); }
+  else if( day_atom[i] === "snow") { imgURLweekly.push('/imgaes/snowflake.png'); }
+  else if( day_atom[i] === "clear-night") { imgURLweekly.push('/imgaes/moon.png'); }
+  else if( day_atom[i] === "wind") { imgURLweekly.push('/imgaes/wind.png'); }
+  else { imgURLweekly.push('');}
   dataWeekly.push({
     days: daysData[i],
     day_atom: day_atom[i],
     imgURLweekly: imgURLweekly[i],
     day_high: day_high[i],
     day_low: day_low[i]
-});
+  });
+  }  
 
-}     
-
-
-  if( atom === "clear-day") { imgURL = '/imgaes/sunny.png'; }
+ if( atom === "clear-day") { imgURL = '/imgaes/sunny.png'; }
  else if(atom === "partly-cloudy-day"){ imgURL = '/imgaes/partly_cloudy.png'; } 
  else if(atom === "partly-cloudy-night"){ imgURL = '/imgaes/partly_cloudy_night.png'; } 
  else if( atom === "cloudy") { imgURL = '/imgaes/cloud.png'; }
@@ -136,16 +132,12 @@ else { imgURLweekly.push('');}
  else if( atom === "snow") { imgURL = '/imgaes/snowflake.png'; }
  else if( atom === "clear-night") { imgURL = '/imgaes/moon.png'; }
  else if( atom === "wind") { imgURL = '/imgaes/wind.png'; }
- else { imgURL = '';}
-
-  
+ else { imgURL = '';}  
  })
  .catch(function (error) {
    console.log(error);
  });
 }
-
-
   app.get('/', (req, res)=>{
   res.render('home.hbs',{
     pageTitle:'Weather Test App',
@@ -161,21 +153,23 @@ else { imgURLweekly.push('');}
     visibility: visibility,
     dateTime: dateTime,
     tempHigh: tempHigh,
-    tempLow: tempLow,
-    dataHourly: dataHourly  
-    
+    tempLow: tempLow
   });
-}); 
+});
+
+app.get('/hourly', (req,res) => {
+  res.render('hourly.hbs', {
+    pageTitle: 'Hourly Weather Forecast',
+    dataHourly: dataHourly
+  })
+});
 
 app.get('/weekly',(req,res) => {
   res.render('weekly.hbs',{
     pageTitle: 'Weekly Weather Forecast', 
-    dataWeekly: dataWeekly
-    
+    dataWeekly: dataWeekly    
   });
 });
-
-
 
 app.listen(3000, ()=>{
   console.log('Server is up on port 3000');

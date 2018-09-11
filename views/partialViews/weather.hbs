@@ -12,7 +12,7 @@
            <h1 class="headline">Weather Forecast</h1>
            <div class="search-weather">
                <h4>Find a forecast</h4>            
-               <form id="my-form" action="/" method="POST">               
+               <form id="my-form" action="/" method="post">               
                <div class="input-group mb-3">
                     <input type="text" class="form-control" name="address" placeholder="Search For Location" aria-describedby="basic-addon2">
                     <div class="input-group-append">
@@ -77,29 +77,10 @@
                 </table>                
             </div> 
             <hr>
-            <div>
-                <p>Hourly Details</p>  
-                <table style="color:gainsboro">
-                <tr>                    
-                    {{#each dataHourly}}
-                    <td>{{hours}}</td>
-                    {{/each}}
-                </tr>         
-              <tr>
-                    {{#each dataHourly}}
-                    <td><img class="icon" src="{{imgURLhourly}}" alt="{{hours_atom}}" height="64" width="64"></td>
-                    {{/each}}
-                </tr>      
-                <tr>
-                    {{#each dataHourly}}
-                    <td>{{htemp}}&deg;</td>
-                    {{/each}}
-                </tr>         
-            </table> 
-            </div>       
-                 
+                           
            <div class="footer" >  
-            <span><a href="/">Home-Weather</a></span><span> / </span>
+            <span><a href="/">Home</a></span><span> / </span>
+            <span><a href="/hourly">Hourly</a></span><span> / </span>
             <span><a href="/weekly">Weekly</a></span>           
             <p>weather@2018</p>              
            </div> 
