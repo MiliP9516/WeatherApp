@@ -14,8 +14,8 @@ var day_atom = [], hours_atom = [];
 var date, hoursData=[], dataHourly = [], dataWeekly = [], daysData=[], imgURLweekly = [], imgURLhourly = [];
 
 
-const api_key =  'AIzaSyBCdxgIi0LeM_tLBdMK17X7xDBhcPy_-6k';
-const darksky_key = '1d888000226717ad5424ba59254a3bb2';
+const api_key =  '*****************************';
+const darksky_key = '**************************';
 
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
