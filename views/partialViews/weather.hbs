@@ -40,7 +40,8 @@
                   </tr>
               </table> 
               </div> 
-              <div>
+              <hr>
+             <div style="float:right">
                   <p>Location Details</p>
                   <table style="color: gainsboro">
                       <tr>
@@ -54,7 +55,6 @@
                   </table>
                     
               </div>
-            <hr>
             <div>               
                 <p>Current Details</p>
                 <table style="color:gainsboro">                    
@@ -77,10 +77,30 @@
                 </table>                
             </div> 
             <hr>
+            <div style="float:center">
+                <p>Hourly Details</p>  
+                <table style="color:gainsboro">
+                <tr>                    
+                    {{#each dataHourly}}
+                    <td>{{hours}}</td>
+                    {{/each}}
+                </tr>         
+              <tr>
+                    {{#each dataHourly}}
+                    <td><img class="icon" src="{{imgURLhourly}}" alt="{{hours_atom}}" height="64" width="64"></td>
+                    {{/each}}
+                </tr>      
+                <tr>
+                    {{#each dataHourly}}
+                    <td>{{htemp}}&deg;</td>
+                    {{/each}}
+                </tr>         
+            </table> 
+            </div>     
+                 
                            
            <div class="footer" >  
             <span><a href="/">Home</a></span><span> / </span>
-            <span><a href="/hourly">Hourly</a></span><span> / </span>
             <span><a href="/weekly">Weekly</a></span>           
             <p>weather@2018</p>              
            </div> 
